@@ -1,0 +1,68 @@
+h1 { 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    color: #FFFFFF;
+    line-height: 26.4px; 
+    background-color: #000000;
+}
+
+h2 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 1.5rem !important;
+    font-weight: 5;
+    color: #FFFFFF;
+}
+
+a.mr-auto {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+}
+.homepage {
+    background-color: #000000;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.left {
+    float: left;
+    margin-left: 3vw;
+    padding: 20px;
+    width: 50vw;
+    text-align: left;
+}
+
+.right {
+    clear: both;
+    float: right;
+    width: 30vw;
+    padding: 20px;
+    margin-right: 10vw;
+    text-align: right;
+}
+
+.collab {
+    background-image: url("../assets/Group 14.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 3vw;
+    width: 30vw;
+    height: 50vh;
+    float: right;
+    overflow: auto;
+}
+
+.app {
+    background-image: url("../assets/app.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 15vw;
+    width: 30vw;
+    height: 50vh;
+    float: left;
+    overflow: auto;
+}
+
+
