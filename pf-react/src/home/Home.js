@@ -45,6 +45,7 @@ class Home extends Component {
             <div className="collab"></div>
             <h2 className="right">Party Finder is a platform for startups. Find your party and begin your quest. What are you waiting for?</h2>
             <div className="left app"></div>
+            <h1 className="right-no-clear">Find.</h1>
             </div>
         );
     }

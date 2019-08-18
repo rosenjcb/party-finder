@@ -1,0 +1,3 @@
+# Party Finder Spring Backend
+
+More details will come soon...
