@@ -1,0 +1,7 @@
+com\pf\server\repository\PartyRepository.class
+com\pf\server\controller\PartyController.class
+com\pf\server\PfServerApplication.class
+com\pf\server\service\PartyService.class
+com\pf\server\model\Party.class
+com\pf\server\model\Role.class
+com\pf\server\model\OpenRole.class
