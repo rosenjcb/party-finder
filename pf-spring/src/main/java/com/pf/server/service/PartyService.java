@@ -42,6 +42,10 @@ public class PartyService {
         return optionalParty.orElse(null);
     }
 
+    public List<Party> getAllParties() {
+        return partyRepository.findAll();
+    }
+
     public Party updateParty(int id, String update) {
         Optional<Party> optionalParty = partyRepository.findById(id);
         if (!optionalParty.isPresent()) return null;

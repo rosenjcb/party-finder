@@ -1,6 +1,9 @@
 package com.pf.server.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pf.server.serializer.PartySerializer;
 import com.pf.server.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,6 +14,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity(name = "parties")
+@JsonSerialize(using = PartySerializer.class)
 public class Party implements Serializable {
 
     @Id

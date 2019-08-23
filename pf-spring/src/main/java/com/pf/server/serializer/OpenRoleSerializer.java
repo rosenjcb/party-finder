@@ -4,27 +4,25 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import com.pf.server.model.OpenRole;
-import com.pf.server.model.Party;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
 
 @JsonComponent
-public class PartySerializer extends StdSerializer<Party> {
+public class OpenRoleSerializer extends StdSerializer<OpenRole> {
 
-    public PartySerializer() {
+    public OpenRoleSerializer() {
         this(null);
     }
 
-    public PartySerializer(Class<Party> t) {
+    public OpenRoleSerializer(Class<OpenRole> t) {
         super(t);
     }
 
     @Override
-    public void serialize(Party party, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+    public void serialize(OpenRole openRole, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField("name", party.getName());
-        jsonGenerator.writeObjectField("openRoles", party.getOpenRoles());
+        jsonGenerator.writeStringField(openRole.getRole().getRoleName(), Integer.toString(openRole.getQuantity()));
         jsonGenerator.writeEndObject();
     }
 }

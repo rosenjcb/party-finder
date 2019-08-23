@@ -1,21 +1,24 @@
 package com.pf.server.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.pf.server.serializer.OpenRoleSerializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name = "open_roles")
+@JsonSerialize(using = OpenRoleSerializer.class)
 public class OpenRole implements Serializable {
 
     @EmbeddedId
-    @JsonIgnore
+    //@JsonIgnore
     private OpenRoleId id;
 
     @ManyToOne(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     @JoinColumn(name =  "party_id", nullable = false, insertable = false, updatable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private Party party;
 
     @ManyToOne(cascade = CascadeType.ALL,
