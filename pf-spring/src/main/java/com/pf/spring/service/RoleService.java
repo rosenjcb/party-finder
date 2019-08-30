@@ -1,7 +1,7 @@
-package com.pf.server.service;
+package com.pf.spring.service;
 
-import com.pf.server.model.Role;
-import com.pf.server.repository.RoleRepository;
+import com.pf.spring.model.Role;
+import com.pf.spring.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,9 +1,10 @@
-package com.pf.server.serializer;
+/*
+package com.pf.spring.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
-import com.pf.server.model.OpenRole;
+import com.pf.spring.model.OpenRole;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
@@ -22,7 +23,8 @@ public class OpenRoleSerializer extends StdSerializer<OpenRole> {
     @Override
     public void serialize(OpenRole openRole, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField(openRole.getRole().getRoleName(), Integer.toString(openRole.getQuantity()));
+        //jsonGenerator.writeStringField(openRole.getRole().getRoleName(), Integer.toString(openRole.getQuantity()));
         jsonGenerator.writeEndObject();
     }
 }
+*/

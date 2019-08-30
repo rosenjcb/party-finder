@@ -1,7 +1,7 @@
-package com.pf.server.controller;
+package com.pf.spring.controller;
 
-import com.pf.server.model.Role;
-import com.pf.server.service.RoleService;
+import com.pf.spring.model.Role;
+import com.pf.spring.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

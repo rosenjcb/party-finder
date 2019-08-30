@@ -8,10 +8,10 @@
 		<version>2.1.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.pf.server</groupId>
+	<groupId>com.pf.sp</groupId>
 	<artifactId>pf-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pf-server</name>
+	<name>pf-spring</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -29,13 +29,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+            <scope>provided</scope>
 		</dependency>
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>

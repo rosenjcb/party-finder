@@ -1,8 +1,8 @@
-package com.pf.server.controller;
+package com.pf.spring.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.pf.server.model.Party;
-import com.pf.server.service.PartyService;
+import com.pf.spring.model.Party;
+import com.pf.spring.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,21 +29,19 @@ public class PartyController {
     @RequestMapping(method = RequestMethod.GET, value = "/parties", produces = "application/json")
     public ResponseEntity<?> getAllParties() {
         List<Party> parties = partyService.getAllParties();
+        //parties.forEach(party -> System.out.println(party.getOpenRoles().toString()));
         return new ResponseEntity<>(parties, HttpStatus.ACCEPTED);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/parties/{id}",  produces = "application/json")
-    public ResponseEntity<?> getParty(@PathVariable int id) throws JsonProcessingException {
-        Party party = partyService.getParty(id);
-        //ObjectMapper mapper = new ObjectMapper();
-        //String response = mapper.writeValueAsString(party);
-        //System.out.println(party.getName());
+    @RequestMapping(method = RequestMethod.GET, value = "/parties/{partyName}",  produces = "application/json")
+    public ResponseEntity<?> getParty(@PathVariable String partyName) throws JsonProcessingException {
+        Party party = partyService.getParty(partyName);
         return party != null ? new ResponseEntity<>(party, HttpStatus.ACCEPTED) : new ResponseEntity<>("Party not found.", HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/parties/{id}", produces = "application/json")
-    public ResponseEntity<?> updateParty(@RequestBody String update, @PathVariable int id) {
-        Party party = partyService.updateParty(id, update);
+    @RequestMapping(method = RequestMethod.POST, value = "/parties/{partyName}", produces = "application/json")
+    public ResponseEntity<?> updateParty(@RequestBody String update, @PathVariable String partyName) {
+        Party party = partyService.updateParty(partyName, update);
         return party != null ? new ResponseEntity<>(party, HttpStatus.ACCEPTED) : new ResponseEntity<>("Party not found or update malformed.", HttpStatus.BAD_REQUEST);
     }
 

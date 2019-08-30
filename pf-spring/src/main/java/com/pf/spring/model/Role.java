@@ -1,4 +1,6 @@
-package com.pf.server.model;
+package com.pf.spring.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +15,7 @@ public class Role implements Serializable {
     private String roleName;
 
     @OneToMany(mappedBy = "role")
-    private Set<OpenRole> openRoles;
+    private Set<PartyMember> partyMembers;
 
     public int getId() {
         return id;
@@ -23,13 +25,6 @@ public class Role implements Serializable {
         this.id = id;
     }
 
-    public Set<OpenRole> getOpenRoles() {
-        return openRoles;
-    }
-
-    public void setOpenRoles(Set<OpenRole> openRoles) {
-        this.openRoles = openRoles;
-    }
 
     public String getRoleName() {
         return roleName;
@@ -37,5 +32,13 @@ public class Role implements Serializable {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public Set<PartyMember> getPartyMembers() {
+        return partyMembers;
+    }
+
+    public void setPartyMembers(Set<PartyMember> partyMembers) {
+        this.partyMembers = partyMembers;
     }
 }

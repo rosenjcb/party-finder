@@ -1,24 +1,21 @@
-package com.pf.server.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.pf.server.serializer.OpenRoleSerializer;
+/*
+package com.pf.spring.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity(name = "open_roles")
-@JsonSerialize(using = OpenRoleSerializer.class)
+//@JsonSerialize(using = OpenRoleSerializer.class)
 public class OpenRole implements Serializable {
 
-    @EmbeddedId
-    //@JsonIgnore
-    private OpenRoleId id;
+    @Id
+    @GeneratedValue
+    private UUID id;
 
     @ManyToOne(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
     @JoinColumn(name =  "party_id", nullable = false, insertable = false, updatable = false)
-    //@JsonIgnore
     private Party party;
 
     @ManyToOne(cascade = CascadeType.ALL,
@@ -26,18 +23,17 @@ public class OpenRole implements Serializable {
     @JoinColumn(name = "role_id", nullable = false, insertable = false, updatable = false)
     private Role role;
 
-    private int quantity;
+    private boolean isOpen;
 
     public OpenRole() {
 
     }
 
-
-    public OpenRole(Party party, Role role, int quantity) {
-        this.id = new OpenRoleId(party, role);
+    public OpenRole(Party party, Role role) {
+        this.id = UUID.randomUUID();
         this.party = party;
         this.role = role;
-        this.quantity = quantity;
+        this.isOpen = true;
     }
 
     @Override
@@ -45,17 +41,18 @@ public class OpenRole implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("party = " + party.getName()).append("\n");
         sb.append("role = " + role.getRoleName()).append("\n");
-        sb.append("quantity = " + quantity);
         return sb.toString();
     }
 
-    /*public int getId() {
+    */
+/*public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }*/
+    }*//*
+
 
     public Party getParty() {
         return party;
@@ -73,19 +70,21 @@ public class OpenRole implements Serializable {
         this.role = role;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public OpenRoleId getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(OpenRoleId id) {
+    public void setId(UUID id) {
         this.id = id;
     }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
 }
+*/

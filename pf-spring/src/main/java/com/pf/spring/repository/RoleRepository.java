@@ -1,6 +1,6 @@
-package com.pf.server.repository;
+package com.pf.spring.repository;
 
-import com.pf.server.model.Role;
+import com.pf.spring.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
