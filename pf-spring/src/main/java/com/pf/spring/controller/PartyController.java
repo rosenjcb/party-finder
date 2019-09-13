@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class PartyController {
 
     private final PartyService partyService;
@@ -20,7 +21,7 @@ public class PartyController {
         this.partyService = partyService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/createParty", produces = "application/json")
+    @RequestMapping(method = RequestMethod.POST, value = "/parties", produces = "application/json")
     public ResponseEntity<Party> createParty(@RequestBody String partyInfo) {
         Party party = partyService.createParty(partyInfo);
         return new ResponseEntity<>(party, HttpStatus.CREATED);
@@ -39,7 +40,7 @@ public class PartyController {
         return party != null ? new ResponseEntity<>(party, HttpStatus.ACCEPTED) : new ResponseEntity<>("Party not found.", HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/parties/{partyName}", produces = "application/json")
+    @RequestMapping(method = RequestMethod.PATCH, value = "/parties/{partyName}", produces = "application/json")
     public ResponseEntity<?> updateParty(@RequestBody String update, @PathVariable String partyName) {
         Party party = partyService.updateParty(partyName, update);
         return party != null ? new ResponseEntity<>(party, HttpStatus.ACCEPTED) : new ResponseEntity<>("Party not found or update malformed.", HttpStatus.BAD_REQUEST);

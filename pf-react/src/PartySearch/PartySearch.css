@@ -1,0 +1,43 @@
+.party-search {
+    background-color: black;
+}
+
+.list-view {
+    background-color: #545064;
+    width: 80vw;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.party-search-header {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    color: white;
+    margin: auto;
+    text-align: center;
+}
+
+.search {
+    margin: 0 auto;
+    width: 80%;
+    padding: 10px;
+}
+
+.search input {
+    border: none;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 2px;
+}
+
+ul.list {
+    list-style-type: none;
+    width: 75%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}

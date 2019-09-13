@@ -1,0 +1,32 @@
+.partyCard {
+    margin-bottom: 0.5rem;
+    background-color: #2D293D;
+    border-radius: 5px;
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+}
+
+.partyName {
+    overflow: hidden;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.shield {
+    background-image: url("../assets/shield.svg");
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 5vh;
+    width: 5vw;
+    background-size: contain;
+    background-position: center;
+}
+
+.openRoles {
+    margin-left: auto;
+    overflow: hidden;
+    color: white;
+    display: inline-block;
+}
+

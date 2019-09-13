@@ -1,9 +1,4 @@
-html, body {
-    min-height: 100%;
-    min-width: 100%;
-}
-
-h1 { 
+.homepage h1 { 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
     font-size: 24px; 
     font-style: normal; 
@@ -14,22 +9,21 @@ h1 {
     background-color: #000000;
 }
 
-h2 {
+
+
+.homepage h2 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
     font-size: 1.5rem !important;
     font-weight: 5;
     color: #FFFFFF;
 }
 
-a.mr-auto {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
-}
-
 .homepage {
     background-color: #000000;
     margin: 0;
-    min-height: 100vh;
+    height: auto;
     min-width: 100vw;
+    overflow: hidden;
 }
 
 .left {
@@ -44,18 +38,47 @@ a.mr-auto {
     clear: both;
     float: right;
     width: 30vw;
-    padding: 20px;
     margin-right: 10vw;
+    margin-bottom: 10vh;
     text-align: right;
 }
 
 .right-no-clear {
     float: right;
     width: 30vw;
-    padding: 20px;
     margin-right: 10vw;
     text-align: right;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 24px; 
+    margin-bottom: 100px;
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    color: #FFFFFF;
+    line-height: 26.4px; 
+    background-color: #000000;
+    list-style-type: none;
 }
+
+ul.right-no-clear li {
+    margin-top: 5px;
+}
+
+
+a.custom-link {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 25px; 
+    font-style: normal; 
+    font-variant: normal; 
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+a:hover.custom-link {  
+    color: #808080;
+    text-decoration: none;
+}
+
 
 .collab {
     background-image: url("../assets/Group 14.png");
@@ -72,7 +95,7 @@ a.mr-auto {
     background-image: url("../assets/app.svg");
     background-repeat: no-repeat;
     background-size: contain;
-    margin-top: 25vh;
+    margin-top: 10vh;
     margin-left: 15vw;
     width: 30vw;
     height: 50vh;

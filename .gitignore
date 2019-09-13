@@ -25,6 +25,12 @@
 **/.idea/**/uiDesigner.xml
 **/.idea/**/dbnavigator.xml
 
+.idea/
+target/
+
+**/target
+**/.idea
+
 # Gradle
 **/.idea/**/gradle.xml
 **/.idea/**/libraries
@@ -36,7 +42,7 @@
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-# *.iml
+*.iml
 # *.ipr
 
 # CMake
