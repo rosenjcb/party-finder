@@ -1,7 +1,12 @@
 import React, { useState, useEffect }  from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import CustomLink from "../../CustomLink/CustomLink";
 import "./PartyCard.css";
 
+
 function PartyCard(props) {
+
+    const partyURL = "/party/" + props.party.name;
     
     useEffect(() => {
         //console.log(props.party);
@@ -10,15 +15,16 @@ function PartyCard(props) {
         console.log(process.env.REACT_APP_HELP);
     });
 
+
     const RoleIcon = (props) => { 
         console.log(props);
+        const partyRoleURL = partyURL + "/partyMembers";
         const imageVar = "REACT_APP_" + props.role.replace(" ","_").toUpperCase(); 
-        var image = require("../assets/" + process.env[imageVar]);
-
-        const iconBox = {
+        const image = require("../../assets/" + process.env[imageVar]);
+        /*const iconBox = {
             display: "inline-block",
             position: 'relative'
-        };
+        };*/
 
         const iconStyle = {
             backgroundImage: `url(${image})`,
@@ -30,7 +36,7 @@ function PartyCard(props) {
             backgroundPosition: 'center',
         };
 
-        const badge = {
+        /*const badge = {
             position: 'absolute',
             top: '8px',
             right: '4px',
@@ -41,12 +47,12 @@ function PartyCard(props) {
             color: 'white',
             textAlign: 'center',
             verticalAlign: 'center'
-        };
+        };*/
 
         return(
-            <div style={iconBox}>
-                <div style={iconStyle}/>
-                <div style={badge}>{props.count}</div>
+            <div className="iconBox">
+                <Link to={partyRoleURL}><div style={iconStyle}/></Link>
+                <div className="badge">{props.count}</div>
             </div>
             
         )
@@ -61,12 +67,12 @@ function PartyCard(props) {
     }
 
     
-    const openRoles = Object.keys(roleCounts).map(openSlot => <RoleIcon role={openSlot} count={roleCounts[openSlot]}/>);
+    const openRoles = Object.keys(roleCounts).sort((a, b) => roleCounts[b] - roleCounts[a]).map(openSlot => <RoleIcon role={openSlot} count={roleCounts[openSlot]}/>);
 
     return(
         <div className="partyCard">
             <div className = "shield"/>
-            <h1 className="partyName">{props.party.name}</h1>
+            <Link to={partyURL} className="partyName">{props.party.name}</Link>
             <div className = "openRoles">{openRoles}</div> 
         </div>
     );

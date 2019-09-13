@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Home from './home/Home';
+import Home from './Home/Home';
 import PartySearch from './PartySearch/PartySearch';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect }  from 'react';
 import axios from 'axios';
 import "./PartySearch.css";
-import PartyCard from "../PartyCard/PartyCard";
+import PartyCard from "./PartyCard/PartyCard";
 
 function PartySearch() {
     const [parties, setParties] = useState([]);
@@ -20,7 +20,7 @@ function PartySearch() {
 
     return(
         <div className="party-search">
-            <div className="list-view">
+            <div className="party-list-view">
                 <h1 className="party-search-header">Public Parties</h1>
                 <div className="search">
                     <input type="text" placeholder="Search.."></input>

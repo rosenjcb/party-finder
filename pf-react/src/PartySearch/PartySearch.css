@@ -1,10 +1,13 @@
 .party-search {
-    background-color: black;
+    background-color: #2C2F33;
+    min-height: Calc(100vh - 3rem);
+    padding-top: 3rem;
 }
 
-.list-view {
+.party-list-view {
     background-color: #545064;
-    width: 80vw;
+    width: 60vw;
+    height: auto;
     margin: auto;
     border-radius: 10px;
 }
@@ -30,8 +33,12 @@
     border: none;
     display: block;
     margin: 0 auto;
+    box-sizing: border-box;
+    outline: none;
+    padding-left: 10px;
     width: 100%;
-    border-radius: 2px;
+    min-height: 1.5rem;
+    border-radius: 7px;
 }
 
 ul.list {
@@ -40,4 +47,8 @@ ul.list {
     margin: 0 auto;
     padding: 0;
     overflow: hidden;
+}
+
+ul.list li {
+    transform: scale(1.1);
 }
