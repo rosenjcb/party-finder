@@ -31,7 +31,7 @@ public class RoleService {
         return roleMappings;
     }
 
-    public List<Role> findPartyIdAndRoleId(int partyId, int roleId) {
-        return this.findPartyIdAndRoleId(partyId, roleId);
-    }
+    /*public List<Role> findPartyIdAndRoleId(int partyId, int roleId) {
+        return roleRepository.findPartyIdAndRoleId(partyId, roleId);
+    }*/
 }

@@ -1,7 +1,5 @@
 package com.pf.spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -15,7 +13,7 @@ public class Role implements Serializable {
     private String roleName;
 
     @OneToMany(mappedBy = "role")
-    private Set<PartyMember> partyMembers;
+    private Set<Position> positions;
 
     public int getId() {
         return id;
@@ -34,11 +32,11 @@ public class Role implements Serializable {
         this.roleName = roleName;
     }
 
-    public Set<PartyMember> getPartyMembers() {
-        return partyMembers;
+    public Set<Position> getPositions() {
+        return positions;
     }
 
-    public void setPartyMembers(Set<PartyMember> partyMembers) {
-        this.partyMembers = partyMembers;
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
     }
 }

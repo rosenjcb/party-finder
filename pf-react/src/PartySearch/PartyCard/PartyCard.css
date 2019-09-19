@@ -14,12 +14,12 @@
 }
 
 a.partyName {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
     text-decoration: none;
 }
 
 a:hover.partyName {  
     color: #808080;
-    font-weight: bold;
 }
 
 .shield {
@@ -68,4 +68,5 @@ a:hover.partyName {
     color: white;
     text-align: center;
     vertical-align: center;
+    user-select: none;
 }

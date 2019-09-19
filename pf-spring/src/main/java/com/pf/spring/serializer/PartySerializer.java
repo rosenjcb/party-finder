@@ -7,8 +7,6 @@ import com.pf.spring.model.Party;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 @JsonComponent
 public class PartySerializer extends StdSerializer<Party> {
@@ -24,9 +22,10 @@ public class PartySerializer extends StdSerializer<Party> {
     @Override
     public void serialize(Party party, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         jsonGenerator.writeStartObject();
+        jsonGenerator.writeStringField("id", party.getId().toString());
         jsonGenerator.writeStringField("name", party.getName());
-        System.out.println(party.getPartyMembers().size());
-        jsonGenerator.writeObjectField("partyMembers", party.getPartyMembers());
+        System.out.println(party.getPositions().size());
+        jsonGenerator.writeObjectField("positions", party.getPositions());
         jsonGenerator.writeEndObject();
     }
 }

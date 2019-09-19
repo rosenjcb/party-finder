@@ -1,7 +1,5 @@
 package com.pf.spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,7 +17,7 @@ public class User {
     private String username;
 
     @OneToMany(mappedBy = "user")
-    private Set<PartyMember> partyMembers;
+    private Set<Position> positions;
 
     public UUID getId() {
         return id;
@@ -30,12 +28,12 @@ public class User {
     }
 
 
-    public Set<PartyMember> getPartyMembers() {
-        return partyMembers;
+    public Set<Position> getPositions() {
+        return positions;
     }
 
-    public void setPartyMembers(Set<PartyMember> partyMembers) {
-        this.partyMembers = partyMembers;
+    public void setPositions(Set<Position> positions) {
+        this.positions = positions;
     }
 
     public String getUsername() {

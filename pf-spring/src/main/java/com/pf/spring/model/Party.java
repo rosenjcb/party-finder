@@ -20,7 +20,7 @@ public class Party implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "party", cascade = CascadeType.ALL)
-    private Set<PartyMember> partyMembers;
+    private Set<Position> positions;
 
     public Party() {
 
@@ -46,11 +46,12 @@ public class Party implements Serializable {
         this.name = name;
     }
 
-    public Set<PartyMember> getPartyMembers() {
-        return partyMembers;
+    public Set<Position> getPositions() {
+        return positions;
     }
 
-    public void setPartyMembers(Set<PartyMember> partyMembers) {
-        this.partyMembers = partyMembers;
+    public void setPositions(Set<Position> positions) {
+        positions.forEach(position ->  position.setParty(this));
+        this.positions = positions;
     }
 }

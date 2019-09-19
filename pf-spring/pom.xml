@@ -8,8 +8,8 @@
 		<version>2.1.7.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.pf.sp</groupId>
-	<artifactId>pf-server</artifactId>
+	<groupId>com.pf.spring</groupId>
+	<artifactId>pf-spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>pf-spring</name>
 	<description>Demo project for Spring Boot</description>

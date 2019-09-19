@@ -1,13 +1,16 @@
 package com.pf.spring.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pf.spring.model.Party;
-import com.pf.spring.model.PartyMember;
+import com.pf.spring.model.Position;
 import com.pf.spring.model.Role;
 import com.pf.spring.repository.PartyRepository;
+import com.pf.spring.util.EntityUtils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -20,7 +23,9 @@ public class PartyService {
     RoleService roleService;
 
     @Autowired
-    PartyMemberService partyMemberService;
+    PositionService positionService;
+
+    ObjectMapper mapper = new ObjectMapper();
 
     public PartyService() {
 
@@ -41,24 +46,35 @@ public class PartyService {
         return partyRepository.findAll();
     }
 
-    public Party updateParty(String partyName, String update) {
+    public void save(Party party) {
+        partyRepository.save(party);
+    }
+
+    public Party updateParty(String partyName, String update) throws Exception {
         Optional<Party> optionalParty = partyRepository.findPartyByName(partyName);
         if (!optionalParty.isPresent()) return null;
         Party party = optionalParty.get();
 
-        HashMap<String, Role> roleHashMap = roleService.getRoleMappings();
-        JSONObject updateJSON = new JSONObject(update);
+        //JSONObject updateJSON = new JSONObject(update);
 
-        Set<PartyMember> partyMembers = party.getPartyMembers();
-        for(int i = 0; i < updateJSON.getJSONArray("addRoles").length(); i++) {
-            PartyMember partyMember = new PartyMember(party, roleHashMap.get(updateJSON.getJSONArray("addRoles").getString(i)));
-            System.out.println(partyMember.toString());
-            partyMembers.add(partyMember);
-            partyMemberService.save(partyMember);
-        }
+        Party updateParty = mapper.readValue(update, Party.class);
+
+        if(!party.getName().equals(updateParty.getName())) throw new Exception("Party IDs are not the same!");
+        EntityUtils entityUtils = new EntityUtils();
+        entityUtils.copyProperties(updateParty, party);
+
+        /*Set<Position> positions = party.getPositions();
+        for(int i = 0; i < updateJSON.getJSONArray("positions").length(); i++) {
+            Position position = mapper.readValue(updateJSON.getJSONArray("positions").getJSONObject(i).toString(4), Position.class);
+            position.setParty(party);
+            System.out.println(position.toString());
+            positions.add(position);
+        }*/
+
+        //positionService.saveAll(positions);
 
         //Save new set to party and return the party.
-        //party.setOpenRoles(openRoles);
+        save(party);
         return party;
     }
 }

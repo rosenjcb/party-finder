@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -42,8 +43,11 @@ public class PartyController {
 
     @RequestMapping(method = RequestMethod.PATCH, value = "/parties/{partyName}", produces = "application/json")
     public ResponseEntity<?> updateParty(@RequestBody String update, @PathVariable String partyName) {
-        Party party = partyService.updateParty(partyName, update);
-        return party != null ? new ResponseEntity<>(party, HttpStatus.ACCEPTED) : new ResponseEntity<>("Party not found or update malformed.", HttpStatus.BAD_REQUEST);
+        try {
+            return new ResponseEntity<>(partyService.updateParty(partyName, update), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
 
