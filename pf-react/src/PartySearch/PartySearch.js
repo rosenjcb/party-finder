@@ -1,4 +1,5 @@
 import React, { useState, useEffect }  from 'react';
+import Helmet from 'react-helmet';
 import axios from 'axios';
 import "./PartySearch.css";
 import PartyCard from "./PartyCard/PartyCard";
@@ -20,6 +21,9 @@ function PartySearch() {
 
     return(
         <div className="party-search">
+            <Helmet>
+                <title>Search</title> 
+            </Helmet>
             <div className="party-list-view">
                 <h1 className="party-search-header">Public Parties</h1>
                 <div className="search">
