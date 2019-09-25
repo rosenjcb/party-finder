@@ -50,31 +50,39 @@ public class PartyService {
         partyRepository.save(party);
     }
 
-    public Party updateParty(String partyName, String update) throws Exception {
+    public Party updateParty(String partyName, String update) {
         Optional<Party> optionalParty = partyRepository.findPartyByName(partyName);
         if (!optionalParty.isPresent()) return null;
         Party party = optionalParty.get();
 
-        //JSONObject updateJSON = new JSONObject(update);
+        Party updateParty = null;
+        try {
+            updateParty = mapper.readValue(update, Party.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        Party updateParty = mapper.readValue(update, Party.class);
 
-        if(!party.getName().equals(updateParty.getName())) throw new Exception("Party IDs are not the same!");
-        EntityUtils entityUtils = new EntityUtils();
-        entityUtils.copyProperties(updateParty, party);
+        if (!party.getId().equals(updateParty.getId())) try {
+            throw new Exception("Party IDs are not the same!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        EntityUtils.copyProperties(updateParty, party);
 
-        /*Set<Position> positions = party.getPositions();
-        for(int i = 0; i < updateJSON.getJSONArray("positions").length(); i++) {
-            Position position = mapper.readValue(updateJSON.getJSONArray("positions").getJSONObject(i).toString(4), Position.class);
-            position.setParty(party);
-            System.out.println(position.toString());
-            positions.add(position);
-        }*/
-
-        //positionService.saveAll(positions);
-
+        //updateParty.getPositions().forEach(position -> System.out.println(position.getId().toString()));
         //Save new set to party and return the party.
-        save(party);
+        //System.out.println(party.getPositions().stream().count());
+        party.getPositions().forEach(position -> {
+            System.out.println(position.getParty().getId().toString());
+            if (position.getId() != null) {
+                System.out.println(position.getId().toString());
+            } else {
+                System.out.println("ERROR NULL");
+            }
+        });
+
+        this.save(party);
         return party;
     }
 }

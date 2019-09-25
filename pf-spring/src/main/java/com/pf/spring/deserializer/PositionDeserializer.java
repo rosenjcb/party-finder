@@ -35,13 +35,14 @@ public class PositionDeserializer extends StdDeserializer<Position> {
     public Position deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         JSONObject json = new JSONObject(jsonParser.readValueAsTree().toString());
         Role role = roleHashMap.get(json.getString("role"));
+        String id = json.optString("id");
         boolean hasCompensation = json.optBoolean("hasCompensation");
         boolean hasEquity = json.optBoolean("hasEquity");
 
         if (json.has("skills") && json.has("hasCompensation") && json.has("hasEquity")) {
             return null; //return new Position(null, role, json.getString("hasCompensation"), json.getString("hasEquity"))
         } else {
-            return new Position(null, role, hasCompensation, hasEquity);
+            return new Position(id, null, role, hasCompensation, hasEquity);
         }
     }
 }

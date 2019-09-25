@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class EntityUtils {
 
-    public void copyProperties(Object src, Object target) {
+    public static void copyProperties(Object src, Object target) {
         String[] nulls = getNullPropertyNames(src);
         BeanUtils.copyProperties(src, target, nulls);
     }

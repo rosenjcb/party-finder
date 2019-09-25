@@ -24,7 +24,7 @@ public class PartySerializer extends StdSerializer<Party> {
         jsonGenerator.writeStartObject();
         jsonGenerator.writeStringField("id", party.getId().toString());
         jsonGenerator.writeStringField("name", party.getName());
-        System.out.println(party.getPositions().size());
+        //System.out.println(party.getPositions().size());
         jsonGenerator.writeObjectField("positions", party.getPositions());
         jsonGenerator.writeEndObject();
     }

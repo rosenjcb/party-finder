@@ -6,6 +6,7 @@ import com.pf.spring.serializer.PartySerializer;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -19,8 +20,8 @@ public class Party implements Serializable {
 
     private String name;
 
-    @OneToMany(mappedBy = "party", cascade = CascadeType.ALL)
-    private Set<Position> positions;
+    @OneToMany(mappedBy = "party", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Position> positions = new HashSet<>();
 
     public Party() {
 
@@ -51,7 +52,10 @@ public class Party implements Serializable {
     }
 
     public void setPositions(Set<Position> positions) {
-        positions.forEach(position ->  position.setParty(this));
-        this.positions = positions;
+        this.positions.clear();
+        if(positions != null) {
+            positions.forEach(position ->  position.setParty(this));
+            this.positions.addAll(positions);
+        }
     }
 }

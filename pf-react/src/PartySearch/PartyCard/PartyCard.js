@@ -2,6 +2,7 @@ import React, { useState, useEffect, createRef }  from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import CustomLink from "../../CustomLink/CustomLink";
 import PopupCard from "../PositionPopup/PositionPopup";
+import { PopupContext, usePopupContext } from "../index.js";
 import "./PartyCard.css";
  
  
@@ -12,7 +13,8 @@ function PartyCard(props) {
  
     const [isExpanded, setIsExpanded] = useState(false);
     const [selectedPosition, setSelectedPosition] = useState({});
- 
+    const [image, setImage] = useState({});
+
     const ref = createRef();
 
     useEffect(() => {
@@ -49,7 +51,7 @@ function PartyCard(props) {
                     const imageVar = "REACT_APP_" + openSlot.replace(" ","_").toUpperCase();
                     const image = require("../../assets/" + process.env[imageVar]);
                     return(
-                        <div className="iconBox" onClick={() => { setIsExpanded(!isExpanded); setSelectedPosition(positions.filter(position => position.role === openSlot));}}>
+                        <div className="iconBox" onClick={() => { setImage(image); setIsExpanded(!isExpanded); setSelectedPosition(positions.filter(position => position.role === openSlot));}}>
                             <div style={{
                                 backgroundImage: `url(${image})`,
                                 backgroundRepeat: 'no-repeat',
@@ -64,7 +66,7 @@ function PartyCard(props) {
                     )
                 })}</div>
             </div>
-            {isExpanded ? <PopupCard position={selectedPosition}/> : null}
+            {isExpanded ? <PopupContext.Provider value = {[isExpanded, setIsExpanded]}><PopupCard position={selectedPosition} image={image}/></PopupContext.Provider> : null}
         </div>
     );
 }

@@ -44,7 +44,8 @@ public class PartyController {
     @RequestMapping(method = RequestMethod.PATCH, value = "/parties/{partyName}", produces = "application/json")
     public ResponseEntity<?> updateParty(@RequestBody String update, @PathVariable String partyName) {
         try {
-            return new ResponseEntity<>(partyService.updateParty(partyName, update), HttpStatus.ACCEPTED);
+            Party party = partyService.updateParty(partyName, update);
+            return new ResponseEntity<>(party, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

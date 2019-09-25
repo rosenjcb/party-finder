@@ -24,6 +24,8 @@ public class PositionSerializer extends StdSerializer<Position> {
         jsonGenerator.writeStartObject();
         jsonGenerator.writeStringField("id", position.getId().toString());
         jsonGenerator.writeStringField("role", position.getRole().getRoleName());
+        jsonGenerator.writeBooleanField("hasCompensation", position.getHasCompensation());
+        jsonGenerator.writeBooleanField("hasEquity", position.getHasEquity());
         if(position.getUser() != null) jsonGenerator.writeStringField("user", position.getUser().getUsername());
         else if(position.isOpen()) jsonGenerator.writeStringField("status", "open");
         jsonGenerator.writeEndObject();

@@ -9,7 +9,7 @@ function PartySearch() {
 
 
     parties.forEach(party => console.log(party));
-    const items = parties.map(party => <PartyCard party={party}/>);
+    const items = parties.map((party, index) => <PartyCard party={party} key={index}/>);
 
 
     useEffect(() => {

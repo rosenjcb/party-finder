@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity(name  = "positions")
+@Entity(name = "positions")
 @JsonSerialize(using = PositionSerializer.class)
 @JsonDeserialize(using = PositionDeserializer.class)
 public class Position {
@@ -21,7 +21,7 @@ public class Position {
 
     @ManyToOne(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
-    @JoinColumn(name =  "party_id")
+    @JoinColumn(name = "party_id")
     @JsonIgnore
     private Party party;
 
@@ -41,18 +41,26 @@ public class Position {
 
     private boolean hasEquity = false;
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(
             name = "position_skill_map",
             joinColumns = @JoinColumn(name = "position_id"),
             inverseJoinColumns = @JoinColumn(name = "skill_id"))
-    private Set<Skill> skills;
+    private Set<Skill> skills;*/
 
 
     private Position() {
     }
 
+
     public Position(Party party, Role role) {
+        this.party = party;
+        this.role = role;
+        this.isOpen = true;
+    }
+
+    public Position(String id, Party party, Role role) {
+        this.id = UUID.fromString(id);
         this.party = party;
         this.role = role;
         this.isOpen = true;
@@ -66,15 +74,24 @@ public class Position {
         this.isOpen = true;
     }
 
+    public Position(String id, Party party, Role role, boolean hasCompensation, boolean hasEquity) {
+        if(!id.isEmpty()) this.id = UUID.fromString(id);
+        this.party = party;
+        this.role = role;
+        this.hasCompensation = hasCompensation;
+        this.hasEquity = hasEquity;
+        this.isOpen = true;
+    }
 
-    public Position(Party party, Role role, boolean hasCompensation, boolean hasEquity, Set<Skill> skills) {
+
+    /*public Position(Party party, Role role, boolean hasCompensation, boolean hasEquity, Set<Skill> skills) {
         this.party = party;
         this.role = role;
         this.hasCompensation = hasCompensation;
         this.hasEquity = hasEquity;
         this.skills = skills;
         this.isOpen = true;
-    }
+    }*/
 
     public UUID getId() {
         return id;
@@ -122,12 +139,12 @@ public class Position {
         //sb.append("id = " + id.toString()).append("\n");
         sb.append("party = " + party.getName()).append("\n");
         sb.append("role = " + role.getRoleName()).append("\n");
-        if(user != null) sb.append("user = " + user.getUsername()).append("\n");
+        if (user != null) sb.append("user = " + user.getUsername()).append("\n");
         sb.append("isOpen = " + isOpen).append("\n");
         return sb.toString();
     }
 
-    public boolean isHasCompensation() {
+    public boolean getHasCompensation() {
         return hasCompensation;
     }
 
@@ -135,7 +152,7 @@ public class Position {
         this.hasCompensation = hasCompensation;
     }
 
-    public boolean isHasEquity() {
+    public boolean getHasEquity() {
         return hasEquity;
     }
 
@@ -143,11 +160,17 @@ public class Position {
         this.hasEquity = hasEquity;
     }
 
-    public Set<Skill> getSkills() {
+    /*public Set<Skill> getSkills() {
         return skills;
     }
 
     public void setSkills(Set<Skill> skills) {
         this.skills = skills;
-    }
+    }*/
+
+    /*@Override
+    public boolean equals(Object object) {
+        Party party = (Party) object;
+        return super.equals(this.getId() == party.getId());
+    }*/
 }
