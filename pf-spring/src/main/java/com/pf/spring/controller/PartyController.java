@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -23,15 +25,16 @@ public class PartyController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/parties", produces = "application/json")
-    public ResponseEntity<Party> createParty(@RequestBody String partyInfo) {
-        Party party = partyService.createParty(partyInfo);
-        return new ResponseEntity<>(party, HttpStatus.CREATED);
+    public ResponseEntity<?> createParty(@RequestBody Party party) {
+        partyService.createParty(party);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{name}").buildAndExpand(party.getName()).toUri();
+        System.out.println(uri.toString());
+        return new ResponseEntity<>(uri, HttpStatus.CREATED);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/parties", produces = "application/json")
     public ResponseEntity<?> getAllParties() {
         List<Party> parties = partyService.getAllParties();
-        //parties.forEach(party -> System.out.println(party.getOpenRoles().toString()));
         return new ResponseEntity<>(parties, HttpStatus.ACCEPTED);
     }
 
@@ -50,6 +53,4 @@ public class PartyController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
-
 }

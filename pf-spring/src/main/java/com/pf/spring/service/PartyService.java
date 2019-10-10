@@ -31,8 +31,8 @@ public class PartyService {
 
     }
 
-    public Party createParty(String name) {
-        Party party = new Party(name);
+    public Party createParty(Party party) {
+        //Party party = mapper.readValue(json, Party.class);
         partyRepository.save(party);
         return party;
     }

@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import axios from 'axios';
 import "./PartySearch.css";
 import PartyCard from "./PartyCard/PartyCard";
+import Body from "../Miscellaneous/Body";
 
 function PartySearch() {
     const [parties, setParties] = useState([]);
@@ -20,7 +21,7 @@ function PartySearch() {
     }, []);
 
     return(
-        <div className="party-search">
+        <Body>
             <Helmet>
                 <title>Search</title> 
             </Helmet>
@@ -33,7 +34,7 @@ function PartySearch() {
                     {items}
                 </ul>
             </div>
-        </div>
+        </Body>
     );
 }
 

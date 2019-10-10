@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createRef }  from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import styled from 'styled-components';
 import Equity from "../../assets/equity.svg";
 import Compensation from "../../assets/compensation.svg";
@@ -8,8 +9,8 @@ import { usePopupContext } from "../index.js";
 function PopupCard(props) {
 
     const [isExpanded, setIsExpanded] = usePopupContext();
-    const { image } = props;
-    const openPositions = props.position.map((position, index) => <Card key={index} position={position} icon={image}/>);
+    const { image, partyURL } = props;
+    const openPositions = props.position.map((position, index) => <Card key={index} position={position} icon={image} partyURL = {partyURL}/>);
 
     useEffect(() => {
         console.log(props.position[0]);
@@ -26,8 +27,10 @@ function PopupCard(props) {
 
 function Card(props) {
 
-    const { icon } = props;
+    const { icon, partyURL } = props;
     const { id, role, hasCompensation, hasEquity } = props.position;
+
+    const positionURL = partyURL + "/positions/" + id + "/apply";
 
 
     useEffect(() => {
@@ -49,12 +52,15 @@ function Card(props) {
                 <Details>
                     <Title>Software Engineer</Title>   
                     <Description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Description>
+                    <Skills>
+                        <SkillPill>Javascript</SkillPill>
+                        <SkillPill>React</SkillPill>
+                        <SkillPill>Redux</SkillPill>
+                    </Skills>
                 </Details>
             </Header>     
             <Body>
-                <Skills>
-                    <SkillPill>Javascript</SkillPill>
-                </Skills>
+                <Link to={positionURL}><ApplyButton>APPLY</ApplyButton></Link>
             </Body>
         </CardDiv>
     )
@@ -85,6 +91,7 @@ const CardDiv = styled.div`
 const Header = styled.div`
     display: flex;
     border-bottom: 1px solid black;
+    padding-bottom: 5px;
 `
 
 const Holder = styled.div`
@@ -119,7 +126,6 @@ const Details = styled.div`
 `;
 
 const Title = styled.h1`
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
     display: inline;    
     margin: 0 auto;
     margin-left: .5rem;
@@ -127,26 +133,49 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
     text-align: center;
-`;
-
-const Body = styled.div` 
-    display: flex;
-
 `;
 
 const Skills = styled.div`
 `;
 
 const SkillPill = styled.button`
+    font-size: 1.5rem;
     border-radius: 16px;
     background-color: #A34C45;
     color: black; 
     border: none;
+    margin: 5px;
 
     :hover {
         background-color: #C4736D;
+    }
+
+    :focus {
+        outline: none;
+    }
+`;
+
+const Body = styled.div`
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+`;
+
+const ApplyButton = styled.button`
+    background-color: green;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    min-width: 75px;
+    min-height: 50px;
+
+    :hover {
+        background-color: #90EE90;
+    }
+
+    :focus {
+        outline: none;
     }
 `;
 

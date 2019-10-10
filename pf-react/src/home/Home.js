@@ -1,11 +1,10 @@
 import React, { useState }  from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 import "./Home.css";    
 
 
 function Home() {
     const [collapsed, setCollapsed] = useState(true);
-
     
     function HomeLink({ label, to, activeOnlyWhenExact }) {
         return (
@@ -38,4 +37,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default withRouter(Home);
