@@ -19,7 +19,6 @@ const Icon = styled.div`
     height: ${props => props.size};
     width: ${props => props.size};
     background-size: contain;
-    background-color: #2D293D;
     background-position: center;
     display: inline-block;
 `;

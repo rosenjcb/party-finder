@@ -14,6 +14,14 @@ function PartyForm(props) {
         "name" : null,
     }); 
 
+    const [isPositionFormOpen, setIsPositionFormOpen] = useState(false);
+
+    const [position, setPosition] = useState({});
+
+    useEffect(() => {
+        console.log(position);
+    },[position]);
+
     const handleSubmit = () => {
         console.log(party)
         axios.post('http://localhost:8080/parties/', party)
@@ -73,7 +81,7 @@ function PartyForm(props) {
         return(redirect);
     } else {
         return(
-            <PartyFormDiv>
+            <StyledPartyForm>
                 <GeneralInfo>
                     <Header>General Info</Header>
                     <PartyContext.Provider value = {[party, setParty]}><Input party={party} attr={"name"} title={"Party Name"} placeHolder={"What's your party's name?"} isInput={true} isBlock={true}></Input></PartyContext.Provider>
@@ -87,10 +95,10 @@ function PartyForm(props) {
                 </Details>
                 <Positions>
                     <Header>Positions</Header>
-                    <PositionForm/>
+                    {isPositionFormOpen ? <PartyContext.Provider value ={[position, setPosition, isPositionFormOpen, setIsPositionFormOpen]}><PositionForm/></PartyContext.Provider> : <Add onClick={() => setIsPositionFormOpen(!isPositionFormOpen)}>Add a Role</Add>}
                 </Positions>
                 <Submit onClick={handleSubmit}>Complete</Submit>
-            </PartyFormDiv>
+            </StyledPartyForm>
         );
     }
 }
@@ -116,7 +124,7 @@ function Input(props) {
     );
 }
 
-const PartyFormDiv = styled.div`
+const StyledPartyForm = styled.form`
     padding: 0.5rem;  
     display: block;
     border-radius: 10px;
@@ -160,8 +168,29 @@ const Positions = styled.div`
     padding: 0.5rem;
 `;
 
+const Add = styled.button.attrs(props => ({
+    onClick: props.onClick
+}))`
+    background-color: grey;
+    margin: 1rem;
+    font-size: 1rem;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    min-width: 75px;
+    min-height: 50px;
+
+    :hover {
+        background-color: lightgrey;
+    }
+
+    :focus {
+        outline: none;
+    }
+`;
+
 const Submit = styled.button.attrs(props => ({
-    onSubmit: props.handleSubmit
+    onClick: props.handleSubmit
 }))`
     background-color: green;
     margin: 1rem;
